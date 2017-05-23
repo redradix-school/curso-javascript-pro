@@ -1,2 +1,2 @@
-# curso-javascript-pro
-Material del curso de Javascript Avanzado de redradix
+# Material del curso de JavaScript Avanzado
+Más información en https://redradix.com/cursos/javascript-avanzado/
