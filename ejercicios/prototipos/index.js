@@ -71,12 +71,6 @@ function mutateChromosome(chromosome, w, h) {
   return mutated
 }
 
-
-
-
-
-
-
 function mutate(individual, w, h) {
   // esta es la funcion principal
   const child = Object.create(individual)
@@ -86,9 +80,4 @@ function mutate(individual, w, h) {
   console.log(child)
   return  child
 }
-
-
-
-
-
 
