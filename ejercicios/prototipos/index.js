@@ -42,6 +42,53 @@ function generateRandomIndividual(w, h) {
 }
 
 
+function mutatePoly(poly, w, h) {
+  const mutated =poly
+  for (let i = 0; i < mutated.sides; i++) if (rnd(100) < MUTATION_PROBABILITY) {
+    if (random() < 0.5) {
+      mutated[i] =  {
+        x: max(0, min(w, rndVariation(mutated[i].x, CHROMOSOME_MUTATION_DELTA))),
+        y: mutated[i].y
+      }
+    } else {
+      mutated[i] =  {
+        x: mutated[i].x,
+        y: max(0, min(h, rndVariation(mutated[i].y, CHROMOSOME_MUTATION_DELTA)))
+      }
+    }
+  }
+  return mutated
+}
+
+function mutateChromosome(chromosome, w, h) {
+  const mutated = mutatePoly(chromosome, w, h)
+  if (rnd(100) < MUTATION_PROBABILITY) {
+    mutated.color = chromosome.color
+    const comp = sample(['r', 'g', 'b'])
+    mutated.color[comp] = max(0, min(255, rndVariation(chromosome.color[comp],
+                                                       CHROMOSOME_COLOR_DELTA)))
+  }
+  return mutated
+}
+
+
+
+
+
+
+
 function mutate(individual, w, h) {
   // esta es la funcion principal
+  const child = Object.create(individual)
+  for (let i = 0; i < CHROMOSOMES; i++) {
+      child.dna[i] = mutateChromosome(individual.dna[i], w, h)
+  }
+  console.log(child)
+  return  child
 }
+
+
+
+
+
+
