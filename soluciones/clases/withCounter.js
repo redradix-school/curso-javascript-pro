@@ -1,5 +1,15 @@
 function withCountClass(Contructor) {
-  /* aquí tu código */
+  const Counted = class extends Constructor {
+    constructor(...arg) {
+      Counted.instances++;
+      super(arg)
+    }
+  }
+  Counted.instances = 0
+  Counted.getInstanceCount = function() {
+    return Counted.instances
+  }
+  return Counted
 }
 
 class Dog {
