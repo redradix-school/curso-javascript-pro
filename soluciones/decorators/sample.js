@@ -17,8 +17,4 @@ class Dog {
 }
 
 var toby = new Dog('toby')
-
-toby.bark()
-toby.bark()
-toby.bark()
 toby.bark()
