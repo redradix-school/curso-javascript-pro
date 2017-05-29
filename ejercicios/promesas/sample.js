@@ -1,9 +1,10 @@
 var fs = require('fs')
 
-fs.readFile('./files/uno.txt', function(err, data) {
-  if (err) {
-    console.log(err)
-  } else {
-    console.log(data.toString())
-  }
-})
+function leerFichero(path, cb) {
+  fs.readFile(path, function(err, data) {
+    if (err) throw err
+    return cb(data.toString())
+  })
+}
+
+leerFichero('./files/ouno.txt', console.log)
