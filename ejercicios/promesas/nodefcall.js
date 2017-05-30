@@ -9,7 +9,6 @@ function nodefcall(fn) {
       resolve(...resultArgs)
     }))
   })
-  // aquí tu código
 }
 
 nodefcall(fs.readFile, './files/uno.txt')
