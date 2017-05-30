@@ -1,3 +1,10 @@
+function getAsyncValuePromise(initVal, delay) {
+  delay = parseInt(delay, 10);
+  return new Promise(function(suc, err) {
+    setTimeout(function() { suc(initVal*2); }, delay);
+  });
+};
+
 function* resolveAsyncValues(valuesArray) {
   var acc = [];
   console.log('resolving', valuesArray, acc)
