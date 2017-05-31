@@ -15,21 +15,16 @@ function nodefcall(fn) {
   })
 }
 
-function nodeinvoke(obj, method) {
-  var args = [].slice.call(arguments, 1)
-  return new Promise((res, rej) => {
-    var fn = obj[method]
-    if (typeof fn !== 'function') rej('Not a function')
-    fn.apply(obj, args.concat(function(err) {
-      if (err) rej(err)
-      var resultArgs = [].slice.call(arguments, 1)
-      res(...resultArgs)
-    }))
-  })
 
+function nodeinvoke(obj, method) {
+  var args = [].slice.call(arguments, 2),
+    fn = obj[method];
+  //return nodefcall(fn.bind.apply(fn, [obj].concat(args)));
+  return nodefcall(fn.bind(obj), ...args);
 }
 
 nodeinvoke(fs, 'readFile', './files/uno.txt')
 .then((data) => {
   console.log(data.toString())
 })
+
