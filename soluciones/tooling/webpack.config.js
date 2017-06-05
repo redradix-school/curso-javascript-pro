@@ -7,6 +7,11 @@ module.exports = {
     path: path.resolve(__dirname, "build"),
     filename: "bundle.js"
   },
+  resolve: {
+    alias: {
+      resources: path.resolve(__dirname, 'src/resources')
+    }
+  },
   module: {
     rules: [
       { enforce: "pre",
