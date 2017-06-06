@@ -73,7 +73,7 @@
 "use strict";
 
 
-var _store = __webpack_require__(3);
+var _store = __webpack_require__(!(function webpackMissingModule() { var e = new Error("Cannot find module \"resources/store\""); e.code = 'MODULE_NOT_FOUND'; throw e; }()));
 
 var _store2 = _interopRequireDefault(_store);
 
@@ -119,139 +119,6 @@ window.onload = function () {
 
 module.exports = __webpack_require__(0);
 
-
-/***/ }),
-/* 2 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-var Observable = function () {
-  function Observable() {
-    _classCallCheck(this, Observable);
-
-    this.listeners = new Map();
-  }
-
-  _createClass(Observable, [{
-    key: "on",
-    value: function on(event, listener) {
-      if (!this.listeners.has(event)) {
-        this.listeners.set(event, new Set());
-      }
-      this.listeners.get(event).add(listener);
-    }
-  }, {
-    key: "off",
-    value: function off(event, listener) {
-      if (this.listeners.has(event)) {
-        this.listeners.get(event).delete(listener);
-      }
-    }
-  }, {
-    key: "emit",
-    value: function emit(event) {
-      for (var _len = arguments.length, args = Array(_len > 1 ? _len - 1 : 0), _key = 1; _key < _len; _key++) {
-        args[_key - 1] = arguments[_key];
-      }
-
-      if (this.listeners.has(event)) {
-        var _iteratorNormalCompletion = true;
-        var _didIteratorError = false;
-        var _iteratorError = undefined;
-
-        try {
-          for (var _iterator = this.listeners.get(event)[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
-            var _fn = _step.value;
-            _fn.apply(undefined, args);
-          }
-        } catch (err) {
-          _didIteratorError = true;
-          _iteratorError = err;
-        } finally {
-          try {
-            if (!_iteratorNormalCompletion && _iterator.return) {
-              _iterator.return();
-            }
-          } finally {
-            if (_didIteratorError) {
-              throw _iteratorError;
-            }
-          }
-        }
-      }
-    }
-  }]);
-
-  return Observable;
-}();
-
-exports.default = Observable;
-
-/***/ }),
-/* 3 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-var _observable = __webpack_require__(2);
-
-var _observable2 = _interopRequireDefault(_observable);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-var Store = function (_Observable) {
-  _inherits(Store, _Observable);
-
-  function Store(reducer, initialState) {
-    _classCallCheck(this, Store);
-
-    var _this = _possibleConstructorReturn(this, (Store.__proto__ || Object.getPrototypeOf(Store)).call(this));
-
-    _this.reducer = reducer;
-    _this.state = initialState;
-    return _this;
-  }
-
-  _createClass(Store, [{
-    key: 'dispatch',
-    value: function dispatch(action) {
-      this.state = this.reducer(action, this.state);
-      this.emit('change', this.state);
-    }
-  }, {
-    key: 'getState',
-    value: function getState() {
-      return this.state;
-    }
-  }]);
-
-  return Store;
-}(_observable2.default);
-
-exports.default = Store;
 
 /***/ })
 /******/ ]);
