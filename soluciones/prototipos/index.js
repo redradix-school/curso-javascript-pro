@@ -82,6 +82,5 @@ function mutate(individual, w, h) {
   for (let i = 0; i < CHROMOSOMES; i++) {
     child.dna[i] = mutateChromosome(individual.dna[i], state.w, state.h)
   }
-  console.log(child)
   return child
 }
