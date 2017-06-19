@@ -2,7 +2,7 @@ function deprecated(text) {
   return function(target, key, descriptor) {
     const method = descriptor.value
     descriptor.value = function() {
-      console.log(key, text)
+      console.log(key , text ? text : '')
       return method.apply(this, arguments)
     };
     return descriptor
@@ -14,7 +14,7 @@ class Dog {
     this.name = name;
   }
 
-  @deprecated('do not use this')
+  @deprecated()
   bark () {
     console.log('Wof, wof!');
   }

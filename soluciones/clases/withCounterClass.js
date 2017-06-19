@@ -7,7 +7,7 @@ function withCounter(Constructor) {
   }
   Counted.instances = 0
   Counted.getInstanceCount = function() {
-    return Counted.instances
+    return this.instances
   }
   return Counted
 }

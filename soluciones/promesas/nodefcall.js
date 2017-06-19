@@ -16,7 +16,7 @@ function nodefcall(fn) {
 }
 
 function nodeinvoke(obj, method) {
-  var args = [].slice.call(arguments, 1)
+  var args = [].slice.call(arguments, 2)
   return new Promise((res, rej) => {
     var fn = obj[method]
     if (typeof fn !== 'function') rej('Not a function')
@@ -26,10 +26,19 @@ function nodeinvoke(obj, method) {
       res(...resultArgs)
     }))
   })
-
 }
+
+/*nodefcall(fs.readFile, './files/uno.txt')
+.then((data) => {
+  console.log('fcall readFile: ', data.toString())
+})
+
+nodefcall(fs.stat, './files/uno.txt')
+.then((data) => {
+  console.log('fcall stat ', JSON.stringify(data))
+})*/
 
 nodeinvoke(fs, 'readFile', './files/uno.txt')
 .then((data) => {
-  console.log(data.toString())
+  console.log('finvoke ', data.toString())
 })

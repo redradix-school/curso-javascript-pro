@@ -76,7 +76,7 @@ function mutateChromosome(chromosome, w, h) {
 }
 
 /* Constructor implementation */
-/*function Dna() {
+function Dna() {
 }
 
 function mutate(individual, w, h) {
@@ -86,13 +86,13 @@ function mutate(individual, w, h) {
     dna[i] = mutateChromosome(individual.dna[i], state.w, state.h)
   }
   return {dna}
-}*/
+}
 /* Object.create implementation */
 function mutate(individual, w, h) {
-  const child = Object.create(individual)
-  child.dna = Object.create(individual.dna)
+  // const child = Object.create(individual)
+  const dna = Object.create(individual.dna)
   for (let i = 0; i < CHROMOSOMES; i++) {
-    child.dna[i] = mutateChromosome(individual.dna[i], state.w, state.h)
+    dna[i] = mutateChromosome(individual.dna[i], state.w, state.h)
   }
-  return child
+  return {dna}
 }
