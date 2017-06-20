@@ -4,6 +4,7 @@
   "description": "Singleton class decorator (babel plugin needed)",
   "main": "index.js",
   "scripts": {
+    "start": "webpack-dev-server --inline --hot",
     "build": "./node_modules/.bin/webpack",
     "watch": "./node_modules/.bin/webpack -w",
     "test": "./node_modules/.bin/mocha"
@@ -23,7 +24,10 @@
     "chai": "^4.0.1",
     "eslint": "^3.19.0",
     "eslint-loader": "^1.7.1",
-    "mocha": "^3.4.2",
-    "webpack-dev-server": "^2.4.5"
+    "mocha": "^3.4.2"
+  },
+  "devDependencies": {
+    "webpack": "^2.2.0",
+    "webpack-dev-server": "^2.5.0"
   }
 }

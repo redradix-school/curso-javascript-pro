@@ -38,4 +38,52 @@ Pool.requestInstance().then((p) => {
   })
 })
 
+/* Decorador */
+function pool(instances) {
+  return (Constructor) => {
+    Constructor._free = []
+    Constructor._waiting = []
+    Constructor._count = 0
+    Constructor._max = 1
+
+    Constructor.requestInstance = () => {
+      return new Promise((resolve, reject) => {
+        if (Constructor._count < Constructor._max) {
+          Constructor._count++
+          return resolve(new Constructor())
+        } else if (Constructor._free.length > 0) {
+          return resolve(Constructor._free.pop())
+        }
+        Constructor._waiting.push(resolve)
+      })
+    }
+
+    Constructor.freeInstance = (instance) => {
+      if (Constructor._waiting.length > 0) {
+        Constructor._waiting.pop()(instance)
+      } else {
+        Particle._free.push(instance)
+      }
+    }
+  }
+}
+
+// ejemplo de uso
+
+@pool(1)
+class Tickets {
+  
+}
+
+Tickets.requestInstance().then((p) => {
+  console.log('> got p!')
+  setTimeout(() => Tickets.freeInstance(p), 1500)
+  console.log('> requesting q...')
+  Tickets.requestInstance().then((q) => {
+    console.log('> got q!')
+  })
+})
+
+
+
 
