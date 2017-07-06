@@ -1,25 +1,12 @@
 class Component {
-	setMediator(mediator) {
-		this.mediator = mediator
-	}
+	setMediator(mediator) {}
 }
 
 class Mediator {
-	constructor(fn) {
-		this.connections = {}
-		if (fn) fn(this)
-	}
-	on(msg, cb) {
-		this.connections[msg] = cb
-	}
-	send(msg) {
-		var args = [].slice.call(arguments, 1),
-			action = this.connections[msg]
-		if (action) action.apply({}, args)
-	}
-	addComponent(component) {
-		component.setMediator(this)
-	}
+	constructor(fn) {}
+	on(msg, cb) {}
+	send(msg) {}
+	addComponent(component) {}
 }
 
 // Componentes
