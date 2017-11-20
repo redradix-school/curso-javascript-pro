@@ -1,0 +1,23 @@
+<html>
+  <head>
+    <style>
+     canvas {
+       padding: 0;
+       margin: 0;
+       background-color: #000;
+     }
+    </style>
+  </head>
+  <body>
+    <div>
+      <canvas id="reference-canvas" width="300" height="300"></canvas>
+      <canvas id="canvas" width="300" height="300"></canvas>
+      <canvas id="canvas-monitor" width="300" height="300"></canvas>
+    </div>
+    <h5 id="generation-counter" ></h5>
+    <button id="pause" onclick="window.paused = !window.paused"> Pause </button>
+    <script src="utils.js"></script>
+    <script src="index.js"></script>
+    <script src="cubist.js"></script>
+  </body>
+</html>
